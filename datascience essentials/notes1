@@ -1,0 +1,69 @@
+# Week 2 Day 1 Data Science Essentials
+
+# Import NumPy library for numerical operations
+import numpy as np
+
+# Create a NumPy array with elements 1, 2, 3, and 4
+arr = np.array([1, 2, 3, 4])
+
+# Print the array
+print(arr)
+
+# Create a 3x3 array filled with zeros
+zeros = np.zeros((3, 3))
+
+# Print the zero array
+print(zeros)
+
+# Create a 2x3 array filled with ones
+ones = np.ones((2, 3))
+
+# Print the ones array
+print(ones)
+
+# Create an array from 1 to 9 with a step size of 2
+range_array = np.arange(1, 10, 2)
+
+# Print the range array
+print(range_array)   # Fixed typo: pring -> print
+
+# Create 5 evenly spaced values between 0 and 1
+linspace_array = np.linspace(0, 1, 5)
+
+# Print the evenly spaced values
+print(linspace_array)
+
+
+# Create a NumPy array with 6 elements
+arr2 = np.array([1, 2, 3, 4, 5, 6])
+
+# Reshape the array into 2 rows and 3 columns
+reshaped = arr2.reshape((2, 3))
+
+# Print the reshaped array
+print(reshaped)
+
+# Create a NumPy array with 3 elements
+arr3 = np.array([1, 2, 3])
+
+# Convert the 1D array into a column vector
+expanded = arr3[:, np.newaxis]
+
+# Print the expanded array
+print(expanded)
+
+# Create the first array
+a = np.array([1, 2, 3])
+
+# Create the second array
+b = np.array([4, 5, 6])
+
+# Add corresponding elements of both arrays
+print(a + b)
+
+# Multiply corresponding elements of both arrays
+print(a * b)
+
+# Divide corresponding elements of the first array by the second array
+print(a / b)
+
