@@ -67,3 +67,35 @@ print(a * b)
 # Divide corresponding elements of the first array by the second array
 print(a / b)
 
+
+
+# Create a NumPy array with values 4, 16, and 25
+arr = np.array([4, 16, 25])
+
+# Calculate and print the square root of each element
+print(np.sqrt(arr))
+
+# Calculate and print the sum of all elements
+print(np.sum(arr))
+
+# Calculate and print the average of all elements
+print(np.mean(arr))
+
+# Create another NumPy array with multiple values
+arr2 = np.array([100, 22, 30, 41, 56, 89, 87, 66])
+
+# Print the element at index 3
+print(arr2[3])
+
+# Print the last element of the array
+print(arr2[-1])
+
+# Print elements from index 1 to index 3
+print(arr2[1:4])
+
+# Print elements from the beginning up to index 3
+print(arr2[:4])
+
+# Print elements from index 4 to the end
+print(arr2[4:])
+
