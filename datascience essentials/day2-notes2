@@ -1,0 +1,81 @@
+# Week 2 Day 2 Data Science Essentials
+
+# Import NumPy library for numerical operations
+import numpy as np
+
+# ---------------- Broadcasting ----------------
+
+# Create a NumPy array
+arr = np.array([1, 2, 3])
+
+# Add 10 to every element in the array
+print(arr + 10)
+
+# Create a 2x3 matrix
+matrix = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Create a vector
+vector = np.array([1, 0, 1])
+
+# Add the vector to each row of the matrix using broadcasting
+print(matrix + vector)
+
+# ---------------- Aggregation ----------------
+
+# Create a 2x3 array
+arr2 = np.array([[1, 2, 3], [4, 5, 6]])
+
+# Calculate and print the sum of all elements
+print("sum is", np.sum(arr2))
+
+# Calculate and print the average of all elements
+print("mean is", np.mean(arr2))
+
+# Find and print the maximum value
+print("max is", np.max(arr2))
+
+# Find and print the minimum value
+print("min is", np.min(arr2))
+
+# Calculate and print the standard deviation
+print("standard deviation", np.std(arr2))
+
+# Calculate and print the sum of each row
+print("sum along rows", np.sum(arr2, axis=1))
+
+# Calculate and print the sum of each column
+print("sum along cols", np.sum(arr2, axis=0))
+
+# ---------------- Boolean Indexing and Filtering ----------------
+
+# Create an array of numbers
+arr3 = np.array([1, 2, 3, 4, 5, 6, 7, 8])
+
+# Filter and store only even numbers
+evens = arr3[arr3 % 2 == 0]
+
+# Print the even numbers
+print("evens are", evens)
+
+# Replace all values greater than 0 with 0
+arr3[arr3 > 0] = 0
+
+# Print the modified array
+print("modified array", arr3)
+
+# ---------------- Random Number Generation ----------------
+
+# Generate a 3x3 array of random decimal numbers
+random_array = np.random.rand(3, 3)
+
+# Print the random array
+print("random array\n", random_array)
+
+# Generate a 2x3 array of random integers from 0 to 9
+random_integers = np.random.randint(0, 10, size=(2, 3))
+
+# Print the random integer array
+print("random integers are\n", random_integers)
+
+# Set a seed value to generate the same random numbers every time
+np.random.seed(34)
