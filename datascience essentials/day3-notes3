@@ -1,0 +1,69 @@
+# Import Pandas library for data manipulation and analysis
+import pandas as pd
+
+# Create a Series with custom index labels
+s = pd.Series([10, 20, 30], index=["a", "b", "c"])
+
+# Print the Series
+print(s)
+
+# Create a dictionary containing employee data
+data = {"Name": ["Alice", "Bob"], "Age": [25, 30]}
+
+# Create a DataFrame from the dictionary
+df = pd.DataFrame(data)
+
+# Print the DataFrame
+print(df)
+
+# ---------------- Loading Data from CSV and Excel ----------------
+
+# Read data from a CSV file
+df2 = pd.read_csv("data.csv")
+
+# Read data from an Excel file
+df3 = pd.read_excel("data.xlsx")
+
+# Save the DataFrame to a CSV file
+df2.to_csv("data.csv")
+
+# Read an Excel file (Note: index=False is not valid for read_excel)
+df4 = pd.read_excel("data.xlsx")
+
+# ---------------- Basic DataFrame Operations ----------------
+
+# Display the first 5 rows
+print(df.head())
+
+# Display the last 5 rows
+print(df.tail())
+
+# Display the last 3 rows
+print(df.tail(3))
+
+# Display information about the DataFrame
+print(df.info())
+
+# Display statistical summary of numeric columns
+print(df.describe())
+
+# Display the Name column
+print(df["Name"])
+
+# Display Name and Age columns
+print(df[["Name", "Age"]])
+
+# Display rows where Age is greater than 25
+print(df[df["Age"] > 25])
+
+# Display the first row using integer indexing
+print(df.iloc[0])
+
+# Display all rows from the first column
+print(df.iloc[:, 0])
+
+# Display the row with label 0
+print(df.loc[0])
+
+# Display the Name column using label indexing
+print(df.loc[:, "Name"])
