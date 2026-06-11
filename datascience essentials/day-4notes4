@@ -1,0 +1,528 @@
+# Pandas Data Cleaning & Data Preparation Notes
+
+## 1. Remove Missing Values
+
+### `dropna()`
+
+```python
+df = df.dropna()
+```
+
+**Purpose:** Remove rows containing missing values (NaN).
+
+### Example
+
+Before:
+
+```text
+Name   Age
+-----------
+Arun   25
+Bala   NaN
+```
+
+After:
+
+```text
+Name   Age
+-----------
+Arun   25
+```
+
+**Memory:**
+
+```text
+dropna()
+↓
+Delete rows with missing values
+```
+
+---
+
+## 2. Remove Columns with Missing Values
+
+### `dropna(axis=1)`
+
+```python
+df = df.dropna(axis=1)
+```
+
+**Purpose:** Remove columns containing missing values.
+
+**Memory:**
+
+```text
+axis=0 → Rows
+axis=1 → Columns
+```
+
+---
+
+## 3. Fill Missing Values
+
+### `fillna(0)`
+
+```python
+df["Age"] = df["Age"].fillna(0)
+```
+
+**Purpose:** Replace missing values with 0.
+
+Before:
+
+```text
+25
+NaN
+30
+```
+
+After:
+
+```text
+25
+0
+30
+```
+
+**Memory:**
+
+```text
+fillna(0)
+↓
+Fill empty values with 0
+```
+
+---
+
+## 4. Forward Fill
+
+### `ffill`
+
+```python
+df = df.fillna(method="ffill")
+```
+
+**Purpose:** Copy value from the previous row.
+
+Before:
+
+```text
+25
+NaN
+30
+```
+
+After:
+
+```text
+25
+25
+30
+```
+
+**Memory:**
+
+```text
+ffill
+↓
+Take value from ABOVE
+```
+
+---
+
+## 5. Backward Fill
+
+### `bfill`
+
+```python
+df = df.fillna(method="bfill")
+```
+
+**Purpose:** Copy value from the next row.
+
+Before:
+
+```text
+25
+NaN
+30
+```
+
+After:
+
+```text
+25
+30
+30
+```
+
+**Memory:**
+
+```text
+bfill
+↓
+Take value from BELOW
+```
+
+---
+
+## 6. Interpolation
+
+### `interpolate()`
+
+```python
+df["Age"] = df["Age"].interpolate()
+```
+
+**Purpose:** Estimate missing values using nearby values.
+
+Before:
+
+```text
+20
+NaN
+30
+```
+
+After:
+
+```text
+20
+25
+30
+```
+
+**Memory:**
+
+```text
+interpolate()
+↓
+Calculate and fill missing value
+```
+
+---
+
+## 7. Rename Column
+
+### `rename()`
+
+```python
+df = df.rename(columns={"Name":"Student_Name"})
+```
+
+**Purpose:** Change column name.
+
+Before:
+
+```text
+Name
+```
+
+After:
+
+```text
+Student_Name
+```
+
+**Memory:**
+
+```text
+rename()
+↓
+Change column name
+```
+
+---
+
+## 8. Change Data Type
+
+### `astype()`
+
+```python
+df["Age"] = df["Age"].astype("float")
+```
+
+**Purpose:** Convert one datatype to another.
+
+Examples:
+
+```python
+astype("int")
+astype("float")
+astype("str")
+```
+
+**Memory:**
+
+```text
+astype()
+↓
+Change datatype
+```
+
+---
+
+## 9. Convert to Date
+
+### `pd.to_datetime()`
+
+```python
+df["Date"] = pd.to_datetime(df["Date"])
+```
+
+**Purpose:** Convert string date into actual date format.
+
+Before:
+
+```text
+"2026-06-11"
+```
+
+After:
+
+```text
+2026-06-11
+```
+
+**Memory:**
+
+```text
+to_datetime()
+↓
+Text Date → Real Date
+```
+
+---
+
+## 10. Create New Column
+
+### Using Existing Column
+
+```python
+df["Bonus"] = df["Salary"] * 2
+```
+
+Before:
+
+```text
+Salary
+10000
+20000
+```
+
+After:
+
+```text
+Salary   Bonus
+10000    20000
+20000    40000
+```
+
+**Memory:**
+
+```text
+Existing Column
+      ↓
+Calculation
+      ↓
+New Column
+```
+
+---
+
+## 11. Combine Rows
+
+### `concat(axis=0)`
+
+```python
+combined = pd.concat([df1, df2], axis=0)
+```
+
+**Purpose:** Add rows vertically.
+
+**Memory:**
+
+```text
+axis=0
+↓
+Add Rows
+```
+
+---
+
+## 12. Combine Columns
+
+### `concat(axis=1)`
+
+```python
+combined = pd.concat([df1, df2], axis=1)
+```
+
+**Purpose:** Add columns horizontally.
+
+**Memory:**
+
+```text
+axis=1
+↓
+Add Columns
+```
+
+---
+
+## 13. Merge DataFrames
+
+### `merge()`
+
+```python
+merged = pd.merge(df1, df2, on="ID")
+```
+
+**Purpose:** Join tables using a common column.
+
+Example:
+
+```text
+ID  Name
+1   Arun
+
+ID  Mark
+1   80
+
+↓
+
+ID  Name  Mark
+1   Arun   80
+```
+
+**Memory:**
+
+```text
+merge()
+↓
+Join using common column
+```
+
+---
+
+## 14. Left Join
+
+```python
+merged = pd.merge(df1, df2, how="left", on="ID")
+```
+
+**Purpose:** Keep all rows from the left table.
+
+**Memory:**
+
+```text
+LEFT JOIN
+↓
+Keep everything from LEFT table
+```
+
+---
+
+## 15. Inner Join
+
+```python
+merged = pd.merge(df1, df2, how="inner", on="ID")
+```
+
+**Purpose:** Keep only matching rows.
+
+**Memory:**
+
+```text
+INNER JOIN
+↓
+Keep only matching rows
+```
+
+---
+
+## 16. Join Using Index
+
+### `join()`
+
+```python
+joined = df1.join(df2, how="inner")
+```
+
+**Purpose:** Join DataFrames using indexes.
+
+Example:
+
+```text
+Index  Name
+0      Arun
+
+Index  Salary
+0      30000
+
+↓
+
+Index  Name  Salary
+0      Arun  30000
+```
+
+**Memory:**
+
+```text
+join()
+↓
+Join using INDEX
+```
+
+---
+
+# Final Quick Revision Sheet
+
+| Function                      | Purpose                            |
+| ----------------------------- | ---------------------------------- |
+| `dropna()`                    | Remove rows with missing values    |
+| `dropna(axis=1)`              | Remove columns with missing values |
+| `fillna(0)`                   | Fill missing values with 0         |
+| `ffill`                       | Copy value from above              |
+| `bfill`                       | Copy value from below              |
+| `interpolate()`               | Estimate missing value             |
+| `rename()`                    | Change column name                 |
+| `astype()`                    | Change datatype                    |
+| `pd.to_datetime()`            | Convert text to date               |
+| `new_column = old_column * 2` | Create new column                  |
+| `concat(axis=0)`              | Add rows                           |
+| `concat(axis=1)`              | Add columns                        |
+| `merge()`                     | Join using common column           |
+| `left join`                   | Keep all left rows                 |
+| `inner join`                  | Keep matching rows                 |
+| `join()`                      | Join using index                   |
+
+# Easy Interview Flow
+
+```text
+Read Data
+   ↓
+dropna()
+   ↓
+fillna()
+   ↓
+interpolate()
+   ↓
+rename()
+   ↓
+astype()
+   ↓
+to_datetime()
+   ↓
+Create New Columns
+   ↓
+concat()
+   ↓
+merge()
+   ↓
+join()
+   ↓
+Data Ready for Analysis
+```
+
+This single page is enough for quick revision of the Pandas data cleaning and preparation functions we've covered.
