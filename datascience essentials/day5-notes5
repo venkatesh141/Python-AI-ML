@@ -1,1 +1,523 @@
+# Pandas Data Aggregation & Grouping - Quick Revision Notes
+
+---
+
+# What is GroupBy?
+
+`groupby()` is used to divide data into groups based on a column.
+
+### Example
+
+```python
+grouped = df.groupby("Department")
+```
+
+Data:
+
+```text
+Department Salary
+-----------------
+IT         50000
+IT         60000
+HR         40000
+HR         45000
+```
+
+Groups Created:
+
+```text
+IT Group
+---------
+50000
+60000
+
+HR Group
+---------
+40000
+45000
+```
+
+### Memory
+
+```text
+groupby()
+↓
+Create Groups
+```
+
+---
+
+# Loop Through Groups
+
+```python
+grouped = df.groupby("Department")
+
+for name, group in grouped:
+    print(name)
+    print(group)
+```
+
+### Meaning
+
+```text
+name
+↓
+Group Name
+
+group
+↓
+Rows inside that group
+```
+
+### Example
+
+```text
+name = IT
+
+group =
+IT 50000
+IT 60000
+```
+
+```text
+name = HR
+
+group =
+HR 40000
+HR 45000
+```
+
+### Memory
+
+```text
+name
+↓
+Group Name
+
+group
+↓
+Group Data
+```
+
+---
+
+# Mean (Average)
+
+```python
+grouped.mean()
+```
+
+or
+
+```python
+df.groupby("Department")["Salary"].mean()
+```
+
+### Meaning
+
+```text
+Group By Department
+↓
+Find Average Salary
+```
+
+Example:
+
+```text
+IT
+
+50000
+60000
+
+Average
+
+(50000+60000)/2
+
+= 55000
+```
+
+### Memory
+
+```text
+mean()
+↓
+Average
+```
+
+---
+
+# Sum (Total)
+
+```python
+grouped.sum()
+```
+
+### Meaning
+
+```text
+Group By Department
+↓
+Find Total Salary
+```
+
+Example:
+
+```text
+50000 + 60000
+
+= 110000
+```
+
+### Memory
+
+```text
+sum()
+↓
+Total
+```
+
+---
+
+# Maximum
+
+```python
+df.groupby("Department")["Salary"].max()
+```
+
+### Meaning
+
+```text
+Find Highest Value in Each Group
+```
+
+Example:
+
+```text
+50000
+60000
+
+Highest = 60000
+```
+
+### Memory
+
+```text
+max()
+↓
+Highest Value
+```
+
+---
+
+# Minimum
+
+```python
+df.groupby("Department")["Salary"].min()
+```
+
+### Meaning
+
+```text
+Find Lowest Value in Each Group
+```
+
+Example:
+
+```text
+50000
+60000
+
+Lowest = 50000
+```
+
+### Memory
+
+```text
+min()
+↓
+Lowest Value
+```
+
+---
+
+# Multiple Aggregations Using agg()
+
+```python
+df.groupby("Department").agg({
+    "Salary":["mean","max","min"]
+})
+```
+
+### Meaning
+
+```text
+Group By Department
+↓
+Calculate
+
+Average
+Highest
+Lowest
+
+Together
+```
+
+Output:
+
+```text
+            Salary
+             mean   max   min
+
+HR          42500 45000 40000
+IT          55000 60000 50000
+```
+
+### Memory
+
+```text
+agg()
+↓
+Many Calculations Together
+```
+
+---
+
+# Pivot Table
+
+```python
+pivot = df.pivot_table(
+    values="Salary",
+    index="Department",
+    aggfunc="mean"
+)
+```
+
+### Meaning
+
+```text
+values
+↓
+Column To Calculate
+
+index
+↓
+Group By Column
+
+aggfunc
+↓
+Calculation
+```
+
+Read As:
+
+```text
+Take Salary
+↓
+Group By Department
+↓
+Find Average
+```
+
+### Memory
+
+```text
+pivot_table()
+↓
+Summary Report
+```
+
+---
+
+# Custom Aggregation Function
+
+### Create Function
+
+```python
+def range_func(x):
+    return x.max() - x.min()
+```
+
+### Use Function
+
+```python
+df.groupby("Department")["Salary"].agg(range_func)
+```
+
+### Example
+
+```text
+IT
+
+50000
+60000
+```
+
+Calculation:
+
+```text
+60000 - 50000
+
+= 10000
+```
+
+Output:
+
+```text
+Department
+
+IT    10000
+HR     5000
+```
+
+### Memory
+
+```text
+Custom Function
+↓
+My Own Calculation
+```
+
+---
+
+# Most Common Pattern
+
+```python
+df.groupby("category_column")["numeric_column"].mean()
+```
+
+Read As:
+
+```text
+Group By Category
+↓
+Take Numeric Column
+↓
+Find Average
+```
+
+---
+
+# Most Important Interview Pattern
+
+```python
+df.groupby("category_column").agg({
+    "numeric_column":
+    [
+        "mean",
+        "max",
+        "min"
+    ]
+})
+```
+
+Read As:
+
+```text
+Group By Category
+↓
+Take Numeric Column
+↓
+Find
+
+Average
+Highest
+Lowest
+```
+
+---
+
+# Complete Flow
+
+```text
+Original Data
+
+IT
+IT
+HR
+HR
+Sales
+Sales
+
+       ↓
+
+groupby()
+
+       ↓
+
+IT Group
+HR Group
+Sales Group
+
+       ↓
+
+mean()
+sum()
+max()
+min()
+
+or
+
+agg()
+
+       ↓
+
+Summary Result
+```
+
+---
+
+# One-Page Revision Table
+
+| Code                         | Purpose                        |
+| ---------------------------- | ------------------------------ |
+| `groupby()`                  | Create groups                  |
+| `for name, group in grouped` | Loop through groups            |
+| `mean()`                     | Average                        |
+| `sum()`                      | Total                          |
+| `max()`                      | Highest value                  |
+| `min()`                      | Lowest value                   |
+| `agg()`                      | Multiple calculations together |
+| `pivot_table()`              | Create summary report          |
+| `agg(custom_function)`       | Apply your own calculation     |
+| `range_func()`               | Max - Min                      |
+| `groupby()["col"].mean()`    | Average per group              |
+| `groupby().agg({...})`       | Multiple aggregations          |
+
+# 10-Second Revision
+
+```text
+groupby()
+↓
+Create Groups
+
+mean()
+↓
+Average
+
+sum()
+↓
+Total
+
+max()
+↓
+Highest
+
+min()
+↓
+Lowest
+
+agg()
+↓
+Many Calculations Together
+
+pivot_table()
+↓
+Summary Report
+
+custom function
+↓
+My Own Logic
+```
+
+If you remember this flow, you'll be able to quickly understand all the aggregation and grouping code when you revisit Pandas later.
 
