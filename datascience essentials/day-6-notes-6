@@ -1,0 +1,577 @@
+# Matplotlib Notes (Based on Your Code)
+
+---
+
+# Import Matplotlib
+
+```python
+import matplotlib.pyplot as plt
+```
+
+### Purpose
+
+Imports Matplotlib's plotting module.
+
+### Memory
+
+```text
+plt
+↓
+Plotting Library
+```
+
+---
+
+# 1. Basic Plot
+
+⚠️ Small mistake in your code:
+
+```python
+plt.lib(x,y)
+```
+
+should be:
+
+```python
+plt.plot(x,y)
+```
+
+### Correct Code
+
+```python
+x = [1,2,3,4]
+
+y = [10,20,25,30]
+
+plt.plot(x,y)
+
+plt.show()
+```
+
+### Meaning
+
+```text
+x-axis → [1,2,3,4]
+
+y-axis → [10,20,25,30]
+```
+
+Plot points:
+
+```text
+(1,10)
+(2,20)
+(3,25)
+(4,30)
+```
+
+### Memory
+
+```text
+plot()
+↓
+Draw a line graph
+```
+
+---
+
+# 2. Line Plot
+
+```python
+plt.plot(
+    [1,2,3],
+    [10,20,30],
+    label="Trend",
+    color="orange",
+    linestyle="--",
+    marker="o"
+)
+
+plt.title("Line Plot")
+
+plt.xlabel("X-axis")
+
+plt.ylabel("Y-axis")
+
+plt.legend()
+
+plt.show()
+```
+
+---
+
+## Components
+
+### plot()
+
+```python
+plt.plot(x,y)
+```
+
+Creates a line graph.
+
+---
+
+### label
+
+```python
+label="Trend"
+```
+
+Used in legend.
+
+Output:
+
+```text
+Trend
+```
+
+appears in graph legend.
+
+---
+
+### color
+
+```python
+color="orange"
+```
+
+Changes line color.
+
+Examples:
+
+```python
+color="red"
+color="blue"
+color="green"
+color="black"
+```
+
+---
+
+### linestyle
+
+```python
+linestyle="--"
+```
+
+Line style.
+
+Examples:
+
+```python
+"-"   Solid Line
+
+"--"  Dashed Line
+
+":"   Dotted Line
+
+"-."  Dash Dot
+```
+
+---
+
+### marker
+
+```python
+marker="o"
+```
+
+Marks each data point.
+
+Examples:
+
+```python
+"o" Circle
+
+"s" Square
+
+"*" Star
+
+"+" Plus
+```
+
+---
+
+### title
+
+```python
+plt.title("Line Plot")
+```
+
+Graph heading.
+
+---
+
+### xlabel
+
+```python
+plt.xlabel("X-axis")
+```
+
+Name of X-axis.
+
+---
+
+### ylabel
+
+```python
+plt.ylabel("Y-axis")
+```
+
+Name of Y-axis.
+
+---
+
+### legend
+
+```python
+plt.legend()
+```
+
+Shows labels.
+
+---
+
+### Memory
+
+```text
+plot()
+↓
+Line Graph
+
+title()
+↓
+Heading
+
+xlabel()
+↓
+X-axis Name
+
+ylabel()
+↓
+Y-axis Name
+
+legend()
+↓
+Show Labels
+```
+
+---
+
+# 3. Bar Chart
+
+```python
+categories = ["A","B","C"]
+
+values = [10,15,17]
+
+plt.bar(
+    categories,
+    values,
+    color="blue"
+)
+
+plt.title("Bar Chart")
+
+plt.show()
+```
+
+### Meaning
+
+```text
+A = 10
+
+B = 15
+
+C = 17
+```
+
+Creates bars.
+
+### Memory
+
+```text
+bar()
+↓
+Compare Categories
+```
+
+### Use Cases
+
+```text
+Department Sales
+
+Student Marks
+
+Product Revenue
+```
+
+---
+
+# 4. Histogram
+
+```python
+data = [1,2,2,3,3,3,4,4,4,4]
+
+plt.hist(
+    data,
+    bins=4,
+    color="green",
+    edgecolor="black"
+)
+
+plt.title("Histogram")
+
+plt.show()
+```
+
+---
+
+## bins
+
+```python
+bins=4
+```
+
+Creates 4 intervals.
+
+Example:
+
+```text
+1-2
+
+2-3
+
+3-4
+
+4-5
+```
+
+---
+
+## edgecolor
+
+```python
+edgecolor="black"
+```
+
+Bar border color.
+
+---
+
+### Purpose
+
+Show data distribution.
+
+### Memory
+
+```text
+hist()
+↓
+Distribution
+```
+
+Questions answered:
+
+```text
+Most Common Value?
+
+Data Spread?
+
+Frequency?
+```
+
+---
+
+# 5. Scatter Plot
+
+⚠️ Small mistake in your code.
+
+You created:
+
+```python
+x1 = [1,2,3,4,5]
+
+y1 = [10,12,25,30,45]
+```
+
+But used:
+
+```python
+plt.scatter(x,y)
+```
+
+Should be:
+
+```python
+plt.scatter(x1,y1)
+```
+
+---
+
+### Correct Code
+
+```python
+x1 = [1,2,3,4,5]
+
+y1 = [10,12,25,30,45]
+
+plt.scatter(
+    x1,
+    y1,
+    color="red"
+)
+
+plt.title("Scatter Plot")
+
+plt.xlabel("X-axis Label")
+
+plt.ylabel("Y-axis Label")
+
+plt.legend(["Dataset 1"])
+
+plt.show()
+```
+
+---
+
+### Meaning
+
+Plots individual points.
+
+```text
+(1,10)
+
+(2,12)
+
+(3,25)
+
+(4,30)
+
+(5,45)
+```
+
+---
+
+### Use Cases
+
+```text
+Age vs Salary
+
+Height vs Weight
+
+Study Hours vs Marks
+```
+
+---
+
+### Memory
+
+```text
+scatter()
+↓
+Relationship Between Variables
+```
+
+---
+
+# Most Important Matplotlib Functions
+
+| Function        | Purpose       |
+| --------------- | ------------- |
+| `plt.plot()`    | Line Plot     |
+| `plt.bar()`     | Bar Chart     |
+| `plt.hist()`    | Histogram     |
+| `plt.scatter()` | Scatter Plot  |
+| `plt.title()`   | Graph Title   |
+| `plt.xlabel()`  | X-axis Label  |
+| `plt.ylabel()`  | Y-axis Label  |
+| `plt.legend()`  | Show Labels   |
+| `plt.show()`    | Display Graph |
+
+---
+
+# Interview Revision Sheet
+
+```text
+plot()
+↓
+Trend / Line Chart
+
+bar()
+↓
+Compare Categories
+
+hist()
+↓
+Distribution
+
+scatter()
+↓
+Relationship
+
+title()
+↓
+Graph Heading
+
+xlabel()
+↓
+X-axis Name
+
+ylabel()
+↓
+Y-axis Name
+
+legend()
+↓
+Show Labels
+
+show()
+↓
+Display Graph
+```
+
+# Quick Visualization Flow
+
+```text
+Data
+ ↓
+Matplotlib
+
+plot()      → Trend
+bar()       → Comparison
+hist()      → Distribution
+scatter()   → Relationship
+
+ ↓
+
+show()
+ ↓
+
+Display Chart
+```
+
+### Common Errors in Your Code
+
+```python
+plt.lib(x,y)
+```
+
+✅ Correct:
+
+```python
+plt.plot(x,y)
+```
+
+```python
+plt.scatter(x,y)
+```
+
+✅ Correct:
+
+```python
+plt.scatter(x1,y1)
+```
+
+These are the two fixes needed for your code to run properly.
