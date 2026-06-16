@@ -575,3 +575,406 @@ plt.scatter(x1,y1)
 ```
 
 These are the two fixes needed for your code to run properly.
+
+
+
+# Seaborn Heatmap Notes
+
+---
+
+## Code
+
+```python
+import matplotlib.pyplot as plt
+import seaborn as sns
+import numpy as np
+
+data = np.random.rand(5,5)
+
+sns.heatmap(
+    data,
+    annot=True,
+    cmap="coolwarm"
+)
+
+plt.title("HeatMap")
+
+plt.show()
+```
+
+---
+
+# What is a Heatmap?
+
+A **Heatmap** is a chart that uses **colors** to represent values.
+
+```text
+High Value
+↓
+Dark / Strong Color
+
+Low Value
+↓
+Light Color
+```
+
+Instead of reading numbers, you can quickly identify patterns using colors.
+
+---
+
+# Step 1: Import Libraries
+
+```python
+import matplotlib.pyplot as plt
+```
+
+Used for:
+
+```text
+Title
+Labels
+Displaying Graph
+```
+
+---
+
+```python
+import seaborn as sns
+```
+
+Used for:
+
+```text
+Heatmaps
+Statistical Graphs
+Beautiful Visualizations
+```
+
+---
+
+```python
+import numpy as np
+```
+
+Used for:
+
+```text
+Arrays
+Random Numbers
+Numerical Operations
+```
+
+---
+
+# Step 2: Create Data
+
+```python
+data = np.random.rand(5,5)
+```
+
+### Meaning
+
+Creates a:
+
+```text
+5 Rows
+5 Columns
+```
+
+matrix of random numbers between:
+
+```text
+0 and 1
+```
+
+Example:
+
+```text
+0.23 0.78 0.11 0.67 0.91
+0.45 0.12 0.89 0.34 0.22
+0.90 0.55 0.77 0.14 0.49
+0.32 0.88 0.19 0.65 0.73
+0.26 0.41 0.95 0.58 0.10
+```
+
+---
+
+# Step 3: Create Heatmap
+
+```python
+sns.heatmap(data)
+```
+
+### Output
+
+```text
+Numbers
+↓
+Colored Boxes
+```
+
+Each cell gets a color based on its value.
+
+---
+
+# annot=True
+
+```python
+sns.heatmap(
+    data,
+    annot=True
+)
+```
+
+### Meaning
+
+Show values inside each box.
+
+Without:
+
+```text
+🟥 🟦 🟨
+🟩 🟦 🟥
+```
+
+Only colors.
+
+---
+
+With:
+
+```text
+0.89 0.34 0.12
+0.56 0.90 0.43
+```
+
+Numbers appear inside cells.
+
+---
+
+### Memory
+
+```text
+annot=True
+
+Annotation
+↓
+Show Numbers
+```
+
+---
+
+# cmap="coolwarm"
+
+```python
+cmap="coolwarm"
+```
+
+### Meaning
+
+Choose color theme.
+
+Example:
+
+```text
+Low Values
+↓
+Blue
+
+High Values
+↓
+Red
+```
+
+---
+
+Popular Colormaps:
+
+```python
+cmap="coolwarm"
+
+cmap="viridis"
+
+cmap="Blues"
+
+cmap="Greens"
+
+cmap="Reds"
+
+cmap="YlGnBu"
+```
+
+---
+
+### Memory
+
+```text
+cmap
+↓
+Color Map
+```
+
+---
+
+# Step 4: Title
+
+```python
+plt.title("HeatMap")
+```
+
+Adds heading.
+
+Output:
+
+```text
+HeatMap
+```
+
+at the top of graph.
+
+---
+
+# Step 5: Show Graph
+
+```python
+plt.show()
+```
+
+Displays chart.
+
+---
+
+# Visual Understanding
+
+Suppose data:
+
+```text
+0.10 0.20 0.90
+
+0.30 0.50 0.80
+
+0.15 0.60 0.95
+```
+
+Heatmap:
+
+```text
+Light   Light   Dark
+
+Light   Medium  Dark
+
+Light   Medium  Dark
+```
+
+Higher values get stronger colors.
+
+---
+
+# Real-World Use: Correlation Matrix
+
+Most common use of Heatmap:
+
+```python
+corr = df.corr(numeric_only=True)
+
+sns.heatmap(
+    corr,
+    annot=True,
+    cmap="coolwarm"
+)
+
+plt.show()
+```
+
+---
+
+Example Correlation Matrix
+
+```text
+            Age   Salary  Experience
+
+Age          1.00  0.80     0.75
+
+Salary       0.80  1.00     0.92
+
+Experience   0.75  0.92     1.00
+```
+
+Heatmap colors help identify:
+
+```text
+Strong Relationships
+
+Weak Relationships
+
+Negative Relationships
+```
+
+quickly.
+
+---
+
+# Interview Notes
+
+| Parameter       | Purpose                  |
+| --------------- | ------------------------ |
+| `sns.heatmap()` | Create heatmap           |
+| `annot=True`    | Show values inside cells |
+| `cmap=`         | Choose color theme       |
+| `plt.title()`   | Add title                |
+| `plt.show()`    | Display chart            |
+
+---
+
+# Easy Memory Trick
+
+```text
+heatmap()
+↓
+Show Values Using Colors
+
+annot=True
+↓
+Show Numbers
+
+cmap
+↓
+Choose Colors
+
+title()
+↓
+Heading
+
+show()
+↓
+Display Graph
+```
+
+# Most Common Interview Pattern
+
+```python
+corr = df.corr(numeric_only=True)
+
+sns.heatmap(
+    corr,
+    annot=True,
+    cmap="coolwarm"
+)
+
+plt.show()
+```
+
+Read it as:
+
+```text
+Find Correlation
+↓
+Create Heatmap
+↓
+Show Values
+↓
+Color Code Relationships
+```
+
+This is the heatmap pattern you'll use most often in data analysis, EDA (Exploratory Data Analysis), and machine learning projects.
+
