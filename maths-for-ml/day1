@@ -1,0 +1,343 @@
+Your code is trying to demonstrate **Linear Algebra using NumPy**, but there is a small mistake in creating matrices.
+
+### Correct Code
+
+```python
+import numpy as np
+
+A = np.array([[1, 2],
+              [3, 4]])
+
+B = np.array([[5, 6],
+              [7, 8]])
+
+print("Addition\n", A + B)
+
+print("Subtraction\n", A - B)
+
+C = 2 * A
+
+print("Scalar Multiplication\n", C)
+
+result = np.dot(A, C)
+
+print("Matrix Multiplication of A and C\n", result)
+
+I = np.eye(3)
+
+print("Identity Matrix\n", I)
+
+Z = np.zeros((2, 3))
+
+print("Zero Matrix\n", Z)
+
+Dia = np.diag([1, 2, 3])
+
+print("Diagonal Matrix\n", Dia)
+```
+
+---
+
+# 1. Creating Matrix A
+
+```python
+A = np.array([[1,2],
+              [3,4]])
+```
+
+Matrix A:
+
+[
+A =
+\begin{bmatrix}
+1 & 2\
+3 & 4
+\end{bmatrix}
+]
+
+Think of it as a table:
+
+| 1 | 2 |
+| - | - |
+| 3 | 4 |
+
+---
+
+# 2. Creating Matrix B
+
+```python
+B = np.array([[5,6],
+              [7,8]])
+```
+
+Matrix B:
+
+[
+B =
+\begin{bmatrix}
+5 & 6\
+7 & 8
+\end{bmatrix}
+]
+
+---
+
+# 3. Matrix Addition
+
+```python
+A + B
+```
+
+Add corresponding elements.
+
+[
+\begin{bmatrix}
+1+5 & 2+6\
+3+7 & 4+8
+\end{bmatrix}
+=============
+
+\begin{bmatrix}
+6 & 8\
+10 & 12
+\end{bmatrix}
+]
+
+Output:
+
+```python
+[[ 6  8]
+ [10 12]]
+```
+
+---
+
+# 4. Matrix Subtraction
+
+```python
+A - B
+```
+
+Subtract corresponding elements.
+
+[
+\begin{bmatrix}
+1-5 & 2-6\
+3-7 & 4-8
+\end{bmatrix}
+=============
+
+\begin{bmatrix}
+-4 & -4\
+-4 & -4
+\end{bmatrix}
+]
+
+Output:
+
+```python
+[[-4 -4]
+ [-4 -4]]
+```
+
+---
+
+# 5. Scalar Multiplication
+
+A scalar is a single number.
+
+```python
+C = 2 * A
+```
+
+Multiply every element by 2.
+
+[
+C=
+\begin{bmatrix}
+2 & 4\
+6 & 8
+\end{bmatrix}
+]
+
+Output:
+
+```python
+[[2 4]
+ [6 8]]
+```
+
+---
+
+# 6. Matrix Multiplication
+
+```python
+result = np.dot(A, C)
+```
+
+This is not normal multiplication.
+
+genui{"algebra_functions_learning_block":{"type_id":"MATRIX_MULTIPLICATION_ROW_COLUMN_RULE"}}
+
+For each position:
+
+### First Element
+
+[
+(1 \times 2) + (2 \times 6)
+= 2 + 12
+= 14
+]
+
+### Second Element
+
+[
+(1 \times 4) + (2 \times 8)
+= 4 + 16
+= 20
+]
+
+### Third Element
+
+[
+(3 \times 2) + (4 \times 6)
+= 6 + 24
+= 30
+]
+
+### Fourth Element
+
+[
+(3 \times 4) + (4 \times 8)
+= 12 + 32
+= 44
+]
+
+Result:
+
+[
+\begin{bmatrix}
+14 & 20\
+30 & 44
+\end{bmatrix}
+]
+
+Output:
+
+```python
+[[14 20]
+ [30 44]]
+```
+
+---
+
+# 7. Identity Matrix
+
+```python
+I = np.eye(3)
+```
+
+Identity Matrix:
+
+[
+\begin{bmatrix}
+1&0&0\
+0&1&0\
+0&0&1
+\end{bmatrix}
+]
+
+Output:
+
+```python
+[[1. 0. 0.]
+ [0. 1. 0.]
+ [0. 0. 1.]]
+```
+
+### Why Important?
+
+Just like multiplying a number by 1:
+
+```python
+5 × 1 = 5
+```
+
+Similarly:
+
+```python
+A × I = A
+```
+
+Identity matrix does not change the matrix.
+
+---
+
+# 8. Zero Matrix
+
+```python
+Z = np.zeros((2,3))
+```
+
+Creates 2 rows and 3 columns.
+
+Output:
+
+```python
+[[0. 0. 0.]
+ [0. 0. 0.]]
+```
+
+Matrix:
+
+[
+\begin{bmatrix}
+0&0&0\
+0&0&0
+\end{bmatrix}
+]
+
+---
+
+# 9. Diagonal Matrix
+
+```python
+Dia = np.diag([1,2,3])
+```
+
+Places numbers on the main diagonal.
+
+Output:
+
+```python
+[[1 0 0]
+ [0 2 0]
+ [0 0 3]]
+```
+
+Matrix:
+
+[
+\begin{bmatrix}
+1&0&0\
+0&2&0\
+0&0&3
+\end{bmatrix}
+]
+
+---
+
+# What Linear Algebra Concepts Did You Learn?
+
+| Concept               | NumPy Code     |
+| --------------------- | -------------- |
+| Matrix Creation       | `np.array()`   |
+| Matrix Addition       | `A + B`        |
+| Matrix Subtraction    | `A - B`        |
+| Scalar Multiplication | `2 * A`        |
+| Matrix Multiplication | `np.dot(A, C)` |
+| Identity Matrix       | `np.eye()`     |
+| Zero Matrix           | `np.zeros()`   |
+| Diagonal Matrix       | `np.diag()`    |
+
+These are the most important Linear Algebra operations used in **Machine Learning**, **Deep Learning**, **Computer Vision**, and **Data Science**.
